@@ -1,0 +1,92 @@
+plugins {
+    id "fabric-loom" version "0.12-SNAPSHOT"
+    id "com.github.johnrengelman.shadow" version "7.1.0"
+    id 'io.github.juuxel.loom-quiltflower' version '1.6.0'
+}
+
+sourceCompatibility = JavaVersion.VERSION_17
+targetCompatibility = JavaVersion.VERSION_17
+
+archivesBaseName = project.archives_base_name
+version = project.mod_version
+group = project.maven_group
+
+loom {
+    accessWidenerPath = file("src/main/resources/vcinteraction.accesswidener")
+}
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+    maven { url = "https://maven.fabricmc.net/" }
+    maven { url = 'https://maven.maxhenkel.de/repository/public' }
+    repositories {
+        maven {
+            name = "Modrinth"
+            url = "https://api.modrinth.com/maven"
+            content {
+                includeGroup "maven.modrinth"
+            }
+        }
+    }
+}
+
+runClient.doFirst {
+    args = ['--username', "henkelmax${new Random().nextInt(1000)}"]
+}
+
+dependencies {
+    minecraft "com.mojang:minecraft:${project.minecraft_version}"
+    mappings loom.officialMojangMappings()
+    modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
+    modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+
+    implementation 'com.google.code.findbugs:jsr305:3.0.2'
+
+    implementation "de.maxhenkel.configbuilder:configbuilder:${configbuilder_version}"
+    shadow "de.maxhenkel.configbuilder:configbuilder:${configbuilder_version}"
+
+    implementation "de.maxhenkel.voicechat:voicechat-api:${voicechat_api_version}"
+
+    modImplementation "maven.modrinth:simple-voice-chat:fabric-${voicechat_mod_version}"
+}
+
+processResources {
+    filesMatching("fabric.mod.json") {
+        expand "version": version,
+                "minecraft_dependency": minecraft_dependency,
+                "minecraft_version": minecraft_version,
+                "loader_version": loader_version,
+                "fabric_version": fabric_version,
+                "voicechat_api_version": voicechat_api_version
+    }
+}
+
+tasks.withType(JavaCompile).configureEach {
+    it.options.encoding = "UTF-8"
+    it.options.release = 17
+}
+
+java {
+    withSourcesJar()
+}
+
+jar {
+    from("LICENSE") {
+        rename { "${it}_${archivesBaseName}" }
+    }
+}
+
+shadowJar {
+    configurations = [project.configurations.shadow]
+    classifier 'shadow-dev'
+    relocate 'de.maxhenkel.configbuilder', "de.maxhenkel.${mod_id}.configbuilder"
+}
+
+prepareRemapJar {
+    dependsOn shadowJar
+}
+
+remapJar {
+    input = shadowJar.archiveFile.get()
+}

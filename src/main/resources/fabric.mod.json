@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "id": "vcinteraction",
+  "version": "${version}",
+  "name": "Voice Chat Interaction",
+  "description": "Voice Chat Interaction",
+  "authors": [
+    "Max Henkel"
+  ],
+  "contact": {
+    "website": "https://modrepo.de"
+  },
+  "license": "All Rights Reserved",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "de.maxhenkel.vcinteraction.VoicechatInteraction"
+    ],
+    "voicechat": [
+      "de.maxhenkel.vcinteraction.Plugin"
+    ]
+  },
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "fabric": ">=${fabric_version}",
+    "minecraft": "${minecraft_dependency}",
+    "java": ">=17",
+    "voicechat": ">=${minecraft_version}-${voicechat_api_version}"
+  },
+  "accessWidener": "vcinteraction.accesswidener"
+}
