@@ -7,6 +7,7 @@ import de.maxhenkel.voicechat.api.VoicechatServerApi;
 import de.maxhenkel.voicechat.api.events.EventRegistration;
 import de.maxhenkel.voicechat.api.events.MicrophonePacketEvent;
 import de.maxhenkel.voicechat.api.events.VoicechatServerStartedEvent;
+import de.maxhenkel.voicechat.api.opus.OpusDecoder;
 import net.minecraft.server.level.ServerPlayer;
 
 import javax.annotation.Nullable;
@@ -20,6 +21,9 @@ public class Plugin implements VoicechatPlugin {
 
     @Nullable
     public static VoicechatServerApi voicechatServerApi;
+
+    @Nullable
+    private OpusDecoder decoder;
 
     @Override
     public String getPluginId() {
@@ -67,6 +71,23 @@ public class Plugin implements VoicechatPlugin {
 
         if (!(senderConnection.getPlayer().getPlayer() instanceof ServerPlayer player)) {
             VoicechatInteraction.LOGGER.warn("Received microphone packets from non-player");
+            return;
+        }
+
+        if (!VoicechatInteraction.SERVER_CONFIG.sneakInteraction.get()) {
+            if (player.isCrouching()) {
+                return;
+            }
+        }
+
+        if (decoder == null) {
+            decoder = event.getVoicechat().createDecoder();
+        }
+
+        decoder.resetState();
+        short[] decoded = decoder.decode(event.getPacket().getOpusEncodedData());
+
+        if (AudioUtils.calculateAudioLevel(decoded) < VoicechatInteraction.SERVER_CONFIG.minActivationThreshold.get().doubleValue()) {
             return;
         }
 
