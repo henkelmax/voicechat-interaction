@@ -8,6 +8,8 @@ This server side Fabric mod allows Simple Voice Chat to interact with your Minec
 - Talking in voice chat activates sculk sensors
 - Talking in voice chat is detected by the warden
 - Optional support for whisper and group chat vibrations
+- Talking while sneaking doesn't trigger vibrations (Configurable)
+- Configurable volume threshold
 
 ## Config Values
 
