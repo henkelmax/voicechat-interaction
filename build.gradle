@@ -2,6 +2,7 @@ plugins {
     id "fabric-loom" version "0.12-SNAPSHOT"
     id "com.github.johnrengelman.shadow" version "7.1.0"
     id 'io.github.juuxel.loom-quiltflower' version '1.6.0'
+    id 'com.modrinth.minotaur' version '2.+'
 }
 
 sourceCompatibility = JavaVersion.VERSION_17
@@ -90,3 +91,27 @@ prepareRemapJar {
 remapJar {
     input = shadowJar.archiveFile.get()
 }
+
+tasks.modrinth.configure({
+    group = 'upload'
+})
+tasks.modrinthSyncBody.configure({
+    group = 'upload'
+})
+
+modrinth {
+    token = file("${rootDir}/modrinth_token.txt").exists() ? file("${rootDir}/modrinth_token.txt").text : ''
+    projectId = modrinth_id
+    versionNumber = "fabric-${mod_version}"
+    versionName = "[FABRIC][${minecraft_version}] ${mod_name} ${mod_version}"
+    uploadFile = remapJar
+    versionType = release_type.toUpperCase()
+    changelog = file("changelog.md").text
+    gameVersions = [minecraft_version]
+    loaders = ['fabric']
+    dependencies {
+        required.project "9eGKb6K1" // Simple Voice Chat
+    }
+    syncBodyFrom = file("readme.md").text
+}
+tasks.modrinth.dependsOn(build)
