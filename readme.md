@@ -2,6 +2,11 @@
 
 This server side Fabric mod allows Simple Voice Chat to interact with your Minecraft world.
 
+## Downloads
+
+- [Modrinth](https://modrinth.com/mod/voice-chat-interaction)
+- [Third party Paper port](https://github.com/iGalaxyYT/voicechat-interaction-paper)
+
 ## Features
 
 - A custom, configurable vibration frequency for voice
@@ -23,6 +28,3 @@ This server side Fabric mod allows Simple Voice Chat to interact with your Minec
 |`voice_sculk_frequency`| `7`           | The frequency of the voice vibration                         |
 |`minimum_activation_threshold`| `-50`         | The audio level threshold to activate the sculk sensor in dB |
 
-## Other Downloads
-
-- [Third party Paper port](https://github.com/iGalaxyYT/voicechat-interaction-paper)
