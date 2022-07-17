@@ -21,6 +21,7 @@ repositories {
     mavenCentral()
     maven { url = "https://maven.fabricmc.net/" }
     maven { url = 'https://maven.maxhenkel.de/repository/public' }
+    maven { url 'https://maven.nucleoid.xyz' }
     repositories {
         maven {
             name = "Modrinth"
@@ -37,10 +38,24 @@ runClient.doFirst {
 }
 
 dependencies {
-    minecraft "com.mojang:minecraft:${project.minecraft_version}"
+    minecraft "com.mojang:minecraft:${minecraft_version}"
     mappings loom.officialMojangMappings()
-    modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
-    modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+    modImplementation "net.fabricmc:fabric-loader:${loader_version}"
+    modRuntimeOnly "net.fabricmc.fabric-api:fabric-api:${fabric_version}"
+
+    Set<String> apiModules = [
+            "fabric-api-base",
+            "fabric-content-registries-v0",
+            "fabric-resource-loader-v0",
+            "fabric-registry-sync-v0",
+            "fabric-lifecycle-events-v1"
+    ]
+
+    apiModules.forEach {
+        include(modImplementation(fabricApi.module(it, fabric_version)))
+    }
+
+    modImplementation include("eu.pb4:polymer:${polymer_version}")
 
     implementation 'com.google.code.findbugs:jsr305:3.0.2'
 

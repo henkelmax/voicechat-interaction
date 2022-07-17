@@ -28,3 +28,7 @@ This server side Fabric mod allows Simple Voice Chat to interact with your Minec
 |`voice_sculk_frequency`| `7`           | The frequency of the voice vibration                         |
 |`minimum_activation_threshold`| `-50`         | The audio level threshold to activate the sculk sensor in dB |
 
+## Credits
+
+- [Fabric API](https://github.com/FabricMC/fabric)
+- [Polymer](https://github.com/Patbox/polymer)

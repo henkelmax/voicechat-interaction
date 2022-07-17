@@ -1,2 +1,1 @@
-- Added activation threshold
-- Added sneak interaction option
+- Fixed registry sync issues
