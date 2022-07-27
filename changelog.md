@@ -1,1 +1,1 @@
-- Fixed registry sync issues
+- Updated to 1.19.1
