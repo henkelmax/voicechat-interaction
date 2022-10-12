@@ -4,6 +4,7 @@ This server side Fabric mod allows Simple Voice Chat to interact with your Minec
 
 ## Downloads
 
+- [CurseForge](https://www.curseforge.com/minecraft/mc-mods/voice-chat-interaction)
 - [Modrinth](https://modrinth.com/mod/voice-chat-interaction)
 - [Third party Paper port](https://github.com/iGalaxyYT/voicechat-interaction-paper)
 
