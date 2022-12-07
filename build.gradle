@@ -167,7 +167,7 @@ modrinth {
     }
     syncBodyFrom = file("readme.md").text
 }
-tasks.modrinth.dependsOn(build)
+tasks.modrinth.dependsOn(remapJar)
 
 forgeUpdate {
     def messages = []
