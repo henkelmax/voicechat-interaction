@@ -68,7 +68,7 @@ dependencies {
         include(modImplementation(fabricApi.module(it, fabric_version)))
     }
 
-    modImplementation include("eu.pb4:polymer:${polymer_version}")
+    modImplementation include("eu.pb4:polymer-reg-sync-manipulator:${polymer_version}")
 
     implementation 'com.google.code.findbugs:jsr305:3.0.2'
 

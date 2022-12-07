@@ -7,6 +7,7 @@ import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.registry.SculkSensorFrequencyRegistry;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.core.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.gameevent.GameEvent;
 import org.apache.logging.log4j.LogManager;
@@ -24,9 +25,9 @@ public class VoicechatInteraction implements ModInitializer {
     public void onInitialize() {
         SERVER_CONFIG = ConfigBuilder.build(FabricLoader.getInstance().getConfigDir().resolve(MODID).resolve("%s.properties".formatted(MODID)), ServerConfig::new);
 
-        VOICE_GAME_EVENT = Registry.register(Registry.GAME_EVENT, new ResourceLocation(MODID, "voice"), new GameEvent("voice", 16));
+        VOICE_GAME_EVENT = Registry.register(BuiltInRegistries.GAME_EVENT, new ResourceLocation(MODID, "voice"), new GameEvent("voice", 16));
 
-        RegistrySyncUtils.setServerEntry(Registry.GAME_EVENT, VOICE_GAME_EVENT);
+        RegistrySyncUtils.setServerEntry(BuiltInRegistries.GAME_EVENT, VOICE_GAME_EVENT);
 
         SculkSensorFrequencyRegistry.register(VOICE_GAME_EVENT, SERVER_CONFIG.voiceSculkFrequency.get());
     }
