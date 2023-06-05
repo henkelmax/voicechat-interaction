@@ -91,7 +91,7 @@ public class Plugin implements VoicechatPlugin {
             return;
         }
 
-        player.getLevel().getServer().execute(() -> {
+        player.level().getServer().execute(() -> {
             if (activate(player)) {
                 player.gameEvent(VoicechatInteraction.VOICE_GAME_EVENT);
             }
@@ -100,7 +100,7 @@ public class Plugin implements VoicechatPlugin {
 
     private boolean activate(ServerPlayer player) {
         Long lastTimestamp = cooldowns.get(player.getUUID());
-        long currentTime = player.level.getGameTime();
+        long currentTime = player.level().getGameTime();
         if (lastTimestamp == null || currentTime - lastTimestamp > 20L) {
             cooldowns.put(player.getUUID(), currentTime);
             return true;
