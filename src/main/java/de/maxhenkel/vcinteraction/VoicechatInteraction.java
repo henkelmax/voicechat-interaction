@@ -25,7 +25,7 @@ public class VoicechatInteraction implements ModInitializer {
     public void onInitialize() {
         SERVER_CONFIG = ConfigBuilder.build(FabricLoader.getInstance().getConfigDir().resolve(MODID).resolve("%s.properties".formatted(MODID)), ServerConfig::new);
 
-        VOICE_GAME_EVENT = Registry.register(BuiltInRegistries.GAME_EVENT, new ResourceLocation(MODID, "voice"), new GameEvent("voice", 16));
+        VOICE_GAME_EVENT = Registry.register(BuiltInRegistries.GAME_EVENT, new ResourceLocation(MODID, "voice"), new GameEvent(16));
 
         RegistrySyncUtils.setServerEntry(BuiltInRegistries.GAME_EVENT, VOICE_GAME_EVENT);
 
