@@ -1,1 +1,1 @@
-- Updated to 1.19.4
+- Fixed being able to activate shriekers with your voice
