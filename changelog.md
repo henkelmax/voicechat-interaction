@@ -1,1 +1,1 @@
-- Fixed being able to activate shriekers with your voice
+- Added mod icon
