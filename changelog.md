@@ -1,1 +1,2 @@
-- Added mod icon
+- Updated configbuilder
+- Added config comments
