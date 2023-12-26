@@ -23,7 +23,10 @@ public class VoicechatInteraction implements ModInitializer {
 
     @Override
     public void onInitialize() {
-        SERVER_CONFIG = ConfigBuilder.build(FabricLoader.getInstance().getConfigDir().resolve(MODID).resolve("%s.properties".formatted(MODID)), ServerConfig::new);
+        SERVER_CONFIG = ConfigBuilder
+                .builder(ServerConfig::new)
+                .path(FabricLoader.getInstance().getConfigDir().resolve(MODID).resolve("%s.properties".formatted(MODID)))
+                .build();
 
         VOICE_GAME_EVENT = Registry.register(BuiltInRegistries.GAME_EVENT, new ResourceLocation(MODID, "voice"), new GameEvent(16));
 

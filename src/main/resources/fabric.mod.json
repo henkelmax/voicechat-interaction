@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "vcinteraction",
-  "version": "${version}",
+  "version": "${mod_version}",
   "name": "Voice Chat Interaction",
   "description": "Voice Chat Interaction",
   "authors": [
@@ -22,13 +22,12 @@
     ]
   },
   "depends": {
-    "fabricloader": ">=${loader_version}",
+    "fabricloader": "${fabric_loader_dependency}",
     "minecraft": "${minecraft_dependency}",
-    "java": ">=17",
     "voicechat": ">=${minecraft_version}-${voicechat_api_version}"
   },
   "breaks": {
-    "fabric": "<${fabric_version}"
+    "fabric-api": "${fabric_api_dependency_breaks}"
   },
   "accessWidener": "vcinteraction.accesswidener"
 }
