@@ -13,7 +13,7 @@ repositories {
 }
 
 dependencies {
-    modImplementation include("eu.pb4:polymer-reg-sync-manipulator:${polymer_version}")
+    modImplementation include("eu.pb4:polymer:${polymer_version}")
 
     implementation "de.maxhenkel.voicechat:voicechat-api:${voicechat_api_version}"
     modImplementation "maven.modrinth:simple-voice-chat:fabric-${voicechat_mod_version}"
