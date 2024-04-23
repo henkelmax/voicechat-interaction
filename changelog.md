@@ -1,2 +1,1 @@
-- Updated configbuilder
-- Added config comments
+- Updated to 1.20.5
