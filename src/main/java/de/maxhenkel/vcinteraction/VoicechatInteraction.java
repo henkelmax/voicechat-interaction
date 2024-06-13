@@ -20,7 +20,7 @@ public class VoicechatInteraction implements ModInitializer {
     public static final Logger LOGGER = LogManager.getLogger(MODID);
     public static ServerConfig SERVER_CONFIG;
 
-    public static final ResourceLocation VOICE_GAME_EVENT_LOCATION = new ResourceLocation(MODID, "voice");
+    public static final ResourceLocation VOICE_GAME_EVENT_LOCATION = ResourceLocation.fromNamespaceAndPath(MODID, "voice");
     public static Holder.Reference<GameEvent> VOICE_GAME_EVENT;
 
     @Override
