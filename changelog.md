@@ -1,1 +1,1 @@
-- Fixed voice chat dependency
+- Updated to 1.21.2
