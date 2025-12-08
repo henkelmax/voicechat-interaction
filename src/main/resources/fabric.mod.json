@@ -28,6 +28,5 @@
   },
   "breaks": {
     "fabric-api": "${fabric_api_dependency_breaks}"
-  },
-  "accessWidener": "vcinteraction.accesswidener"
+  }
 }
