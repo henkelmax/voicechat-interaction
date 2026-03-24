@@ -4,7 +4,7 @@ import de.maxhenkel.configbuilder.ConfigBuilder;
 import de.maxhenkel.vcinteraction.config.ServerConfig;
 import eu.pb4.polymer.rsm.api.RegistrySyncUtils;
 import net.fabricmc.api.ModInitializer;
-import net.fabricmc.fabric.api.registry.SculkSensorFrequencyRegistry;
+import net.fabricmc.fabric.api.registry.VibrationFrequencyRegistry;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.core.Holder;
 import net.minecraft.core.Registry;
@@ -34,6 +34,6 @@ public class VoicechatInteraction implements ModInitializer {
 
         RegistrySyncUtils.setServerEntry(BuiltInRegistries.GAME_EVENT, VOICE_GAME_EVENT_LOCATION);
 
-        SculkSensorFrequencyRegistry.register(VOICE_GAME_EVENT.key(), SERVER_CONFIG.voiceSculkFrequency.get());
+        VibrationFrequencyRegistry.register(VOICE_GAME_EVENT.key(), SERVER_CONFIG.voiceSculkFrequency.get());
     }
 }
